@@ -43,4 +43,4 @@ Users can access the model through a simple web interface built with Streamlit.
 The app allows users to:
 1. Input booking details (lead time, deposit type, guests, etc.)  
 2. View the **predicted probability of cancellation**  
-3. See whether the booking is **Likely to Show** or **Likely Cancelled**  
+3. See whether the booking is **Likely to Show** or **Likely Cancelled**.  
