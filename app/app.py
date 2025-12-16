@@ -30,13 +30,11 @@ def align_columns(df: pd.DataFrame, model) -> pd.DataFrame:
             # Fallback: use whatever came in (best effort)
             needed = list(df.columns)
 
-    # Add any missing expected columns as zeros; drop extras; enforce order
     for c in needed:
         if c not in df.columns:
             df[c] = 0
     df = df[needed]
 
-    # Cast bools to int if your model was trained on integers
     for c in df.columns:
         if df[c].dtype == "bool":
             df[c] = df[c].astype(int)
@@ -74,28 +72,6 @@ with tab_preview:
 
     st.divider()
 
-    # Predict button below the preview table
-    # if st.button("🔮 Predict"):
-    #     try:
-    #         aligned = align_columns(user_data.copy(), model)
-
-    #         # Use model's own default threshold (predict) and show probability if available
-    #         if hasattr(model, "predict_proba"):
-    #             prob = float(model.predict_proba(aligned)[0, 1])
-    #         else:
-    #             prob = None
-
-    #         pred = int(model.predict(aligned)[0])
-
-    #         st.subheader("Result")
-    #         if prob is not None:
-    #             st.metric("Cancellation probability", f"{prob:.2%}")
-    #         st.write("**Prediction:**", "⚠️ Likely Cancelled" if pred == 1 else "✅ Likely to Show")
-
-
-    #     except Exception as e:
-    #         st.error(f"Prediction failed: {e}")
-    #         st.caption("Check that the saved model was trained on the same feature names and datatypes.")
 
 if st.button("🔮 Predict"):
     try:
